@@ -4,21 +4,16 @@ import { passwordStrength } from "check-password-strength";
 
 const app: Application = express();
 
-app.listen(8000, () => console.log("Server running"));
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => console.log("Server running"));
 
 app.get("/", (req: Request, res: Response) => {
-  // const some_length = JSON.parse(req.query.length as string) as string;
-  const length = (req.query.length as unknown as number) || 15;
-  const numbers = (req.query.numbers as unknown as boolean) || false;
-  const lowercase = (req.query.lowercase as unknown as boolean) || true;
-  const uppercase = (req.query.uppercase as unknown as boolean) || false;
-  const symbols = (req.query.symbols as unknown as boolean) || false;
-
-//   console.log(length)
-//   console.log(numbers)
-//   console.log(lowercase)
-//   console.log(uppercase)
-//   console.log(symbols)
+  const length = JSON.parse(req.query.length?.toString() ?? '15');
+  const numbers = JSON.parse(req.query.numbers?.toString() ?? 'false');
+  const lowercase = JSON.parse(req.query.lowercase?.toString() ?? 'true');
+  const uppercase = JSON.parse(req.query.uppercase?.toString() ?? 'false');
+  const symbols = JSON.parse(req.query.symbols?.toString() ?? 'false');
 
   if (length < 4) {
     res.status(500).json({ error: "Password length must be 4 or greater" });
