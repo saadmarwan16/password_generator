@@ -38,31 +38,31 @@ app.get("/", (req: Request, res: Response) => {
 
   const generatedPasswordStrength = passwordStrength(password, [
     {
-      id: 0,
+      id: 1,
       value: "Very weak",
       minDiversity: 0,
       minLength: 0,
     },
     {
-      id: 1,
+      id: 2,
       value: "Weak",
       minDiversity: 1,
       minLength: 6,
     },
     {
-      id: 2,
+      id: 3,
       value: "Medium",
       minDiversity: 2,
       minLength: 8,
     },
     {
-      id: 3,
+      id: 4,
       value: "Strong",
       minDiversity: 3,
       minLength: 12,
     },
     {
-      id: 4,
+      id: 5,
       value: "Very Strong",
       minDiversity: 4,
       minLength: 16,
